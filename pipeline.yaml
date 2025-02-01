@@ -24,12 +24,12 @@ spec:
         min: 1
       udf:
         container:
-          image: quay.io/numaio/numaflow-go/map-flatmap:stable # A built-in UDF which simply cats the message
+          image: quay.io/yhl25/nitk-workshop/word-count:stable
     - name: counter
       udf:
         container:
           # compute the sum
-          image: quay.io/numaio/numaflow-go/reduce-counter:stable
+          image: quay.io/yhl25/nitk-workshop/word-split:stable
         groupBy:
           window:
             fixed:
