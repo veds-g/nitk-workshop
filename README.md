@@ -20,25 +20,22 @@ choco install kubernetes-cli
 ```bash
 choco install k3d
 ```
-- `git`
-```bash
-choco install git
-```
 
 ### Installation Steps
 
 1. Creating a local Kubernetes cluster using k3d
 
 ```bash
-k3d cluster create nitk-workshop-cluster --api-port 6550 -p "8081:80@loadbalancer" --agents 2
+k3d cluster create nitk-workshop-cluster
 ```
 
 2. Install Numaflow
 
 ```bash
-kubectl create ns numaflow-system
-kubectl apply -n numaflow-system -f https://raw.githubusercontent.com/numaproj/numaflow/stable/config/install.yaml
-kubectl apply -f https://raw.githubusercontent.com/numaproj/numaflow/stable/examples/0-isbsvc-jetstream.yaml
+1. kubectl create ns numaflow-system
+2. kubectl apply -f numaflow.yaml
+OR kubectl apply -n numaflow-system -f https://raw.githubusercontent.com/numaproj/numaflow/stable/config/install.yaml
+3. kubectl apply -f https://raw.githubusercontent.com/numaproj/numaflow/stable/examples/0-isbsvc-jetstream.yaml
 ```
 
 3. Create the word count pipeline using Numaflow
@@ -53,10 +50,18 @@ kubectl apply -f https://raw.githubusercontent.com/veds-g/nitk-workshop/master/p
 kubectl port-forward svc/numaflow-server 8443 -n numaflow-system
 ```
 
-5. Send data to the pipeline
+5. Expose the source vertex to accept data
 
 ```bash
+kubectl port-forward word-count-pl-in-0-.... 8444:8443
+```
+
+6. Send data to the pipeline
+
+```bash
+chmod +x post_data.sh
 ./post_data.sh
 ```
 
 Open the browser "https://localhost:8443/", then go to Numaflow UI, select `default` namespace, and click the `word-count-pl` pipeline.
+The count of messages send should be visible in sink vertex logs.
