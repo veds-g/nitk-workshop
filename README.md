@@ -30,7 +30,7 @@ choco install git
 1. Creating a local Kubernetes cluster using k3d
 
 ```bash
-k3d cluster create ci-cd-workshop-cluster --api-port 6550 -p "8081:80@loadbalancer" --agents 2
+k3d cluster create nitk-workshop-cluster --api-port 6550 -p "8081:80@loadbalancer" --agents 2
 ```
 
 2. Install Numaflow
@@ -51,6 +51,12 @@ kubectl apply -f https://raw.githubusercontent.com/veds-g/nitk-workshop/master/p
 
 ```bash
 kubectl port-forward svc/numaflow-server 8443 -n numaflow-system
+```
+
+5. Send data to the pipeline
+
+```bash
+./post_data.sh
 ```
 
 Open the browser "https://localhost:8443/", then go to Numaflow UI, select `default` namespace, and click the `word-count-pl` pipeline.
