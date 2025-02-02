@@ -26,7 +26,7 @@ choco install k3d
 1. Creating a local Kubernetes cluster using k3d
 
 ```bash
-k3d cluster create nitk-workshop-cluster
+k3d cluster create
 ```
 
 2. Install Numaflow
