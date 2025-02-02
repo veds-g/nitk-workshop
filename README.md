@@ -32,10 +32,9 @@ k3d cluster create nitk-workshop-cluster
 2. Install Numaflow
 
 ```bash
-1. kubectl create ns numaflow-system
-2. kubectl apply -f numaflow.yaml
-OR kubectl apply -n numaflow-system -f https://raw.githubusercontent.com/numaproj/numaflow/stable/config/install.yaml
-3. kubectl apply -f https://raw.githubusercontent.com/numaproj/numaflow/stable/examples/0-isbsvc-jetstream.yaml
+kubectl create ns numaflow-system
+kubectl apply -n numaflow-system -f https://github.com/numaproj/numaflow/releases/download/v1.4.1/install.yaml
+kubectl apply -f https://raw.githubusercontent.com/numaproj/numaflow/stable/examples/0-isbsvc-jetstream.yaml
 ```
 
 3. Create the word count pipeline using Numaflow
