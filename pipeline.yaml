@@ -24,12 +24,12 @@ spec:
         min: 1
       udf:
         container:
-          image: quay.io/yhl25/nitk-workshop/word-count:stable
+          image: quay.io/yhl25/nitk-workshop/word-split:stable
     - name: counter
       udf:
         container:
           # compute the sum
-          image: quay.io/yhl25/nitk-workshop/word-split:stable
+          image: quay.io/yhl25/nitk-workshop/word-count:stable
         groupBy:
           window:
             fixed:
